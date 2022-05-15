@@ -32,29 +32,26 @@ export default function Home(props){
     // TODO: Follow DRY principles and have less repeating code
 
     async function validateAndSend(ev){
+        ev.preventDefault();
         const passwordStrengthResults = passwordStrength(password);
         if(passwordStrengthResults.id >= 2){
             // OK now let's verify everything else
             if(!username || !password){
                 alert("Please fill out a username and password");
-                ev.preventDefault();
                 return false;
             }else if(password !== confirmPassword){
                 alert("Passwords do not match");
-                ev.preventDefault();
                 return false;
             }else if(!realname){
                 alert("Please fill in a real name");
-                ev.preventDefault();
                 return false;
             }else if(!email){
                 alert("Please fill in an email");
-                ev.preventDefault();
                 return false;
             }
             // Send
             try{
-                const response = await dfetch("/users", {
+                const response = await dfetch("/users/", {
                     method: "POST",
                     bodyJson: {
                         username,
@@ -70,6 +67,7 @@ export default function Home(props){
                     let respText = await response.text();
                     alert("ERROR: " + respText);
                     setError(respText);
+                    return false;
                 }
             }catch(ex){
                 alert("Error: " + ex + " please contact maintainers with the details in this box.");

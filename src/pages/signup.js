@@ -39,27 +39,27 @@ export default function Home(props){
         <h2 className="content-title">Signup</h2>
         <form className="w-400 mw-full">
             <div className="form-group">
-                <label for="fullname" class="required">Real name:</label>
-                <input type="text" class="form-control" id="realname" placeholder="John Doe" required="required" onChange={(ev) => setRealname(ev.target.value)}></input>
+                <label for="fullname" className="required">Real name:</label>
+                <input type="text" className="form-control" id="realname" placeholder="John Doe" required="required" onChange={(ev) => setRealname(ev.target.value)}></input>
             </div>
             <small>Only shown to people inside your instituion. Can be shown to public if you opt in. You may include only a last initial or only your first initial if you wish. </small>
             <div className="form-group">
-                <label for="email" class="required">Email Address:</label>
-                <input type="email" class="form-control" id="email" placeholder="johndoe+student@gmail.com" required="required" onChange={(ev) => setEmail(ev.target.value)}></input>
+                <label for="email" className="required">Email Address:</label>
+                <input type="email" className="form-control" id="email" placeholder="johndoe+student@gmail.com" required="required" onChange={(ev) => setEmail(ev.target.value)}></input>
             </div>
             <small>
                 We promise to <strong>never</strong> spam your inbox. Only nesscary emails will be sent by default but you can opt to be have discussions mailed to you. 
             </small>
             <div className="form-group">
-                <label for="username" class="required">Username:</label>
-                <input type="text" class="form-control" id="username" placeholder="johndoe" required="required" onChange={setUsername}></input>
+                <label for="username" className="required">Username:</label>
+                <input type="text" className="form-control" id="username" placeholder="johndoe" required="required" nChange={(ev) => setUsername(ev.target.value)}></input>
             </div>
             <small>
                 This is the name everyone will refer to you by when your real name is not displayed. 
             </small>
             <div className="form-group">
-                <label for="password" class="required">Password:</label>
-                <input type="password" class="form-control" id="password" required="required" onChange={(ev) => {
+                <label for="password" className="required">Password:</label>
+                <input type="password" className="form-control" id="password" required="required" onChange={(ev) => {
                     setPassword(ev.target.value);
                     judgePassword(ev.target.value);
                  } }></input>
@@ -68,9 +68,10 @@ export default function Home(props){
                 Password strength is {passwordCompliant}
                 </small>}
             <div className="form-group">
-                <label for="confirm-password" class="required">Password (again to confirm):</label>
+                <label for="confirm-password" className="required">Password (again to confirm):</label>
                 <input type="password" class={"form-control " + (confirmPassword === password ? "password-matched-input":"password-mismatched-input")} id="confirm-password" required="required" onChange={(ev) => setConfirmPassword(ev.target.value)}  ></input>
             </div>
+            <button type="submit" className="btn btn-primary">Signup!</button>
         </form>
     </div>;
 }

@@ -51,7 +51,7 @@ export default function Home(props){
             }
             // Send
             try{
-                const response = await dfetch("/users/", {
+                const response = await dfetch("/users", {
                     method: "POST",
                     bodyJson: {
                         username,
@@ -79,7 +79,7 @@ export default function Home(props){
         }
     }
 
-    return <div className="homepage container">
+    return <div className="container">
         <h2 className="content-title">Signup</h2>
         <form className="w-400 mw-full" onSubmit={validateAndSend}>
             <div className="form-group">

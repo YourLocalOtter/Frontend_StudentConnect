@@ -5,6 +5,7 @@ import './App.css';
 import Home from "./pages/home"
 import NotFound from "./pages/notfound";
 import Signup from "./pages/signup";
+import Signin from "./pages/signin";
 
 import Navbar from "./Navbar"
 
@@ -28,7 +29,7 @@ function App() {
                   <Route exact path="/" element={<Home />}>
                     
                   </Route>
-                  <Route path="/signin">
+                  <Route path="/signin" element={<Signin />}>
                   </Route>
                   <Route path="/signup" element={<Signup />}>
                   </Route>

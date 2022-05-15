@@ -48,7 +48,7 @@ export default function Home(props){
                 <input type="email" className="form-control" id="email" placeholder="johndoe+student@gmail.com" required="required" onChange={(ev) => setEmail(ev.target.value)}></input>
             </div>
             <small>
-                We promise to <strong>never</strong> spam your inbox. Only nesscary emails will be sent by default but you can opt to be have discussions mailed to you. 
+                We promise to <strong>never</strong> spam your inbox. Only necessary emails will be sent by default but you can opt to be have discussions mailed to you. 
             </small>
             <div className="form-group">
                 <label for="username" className="required">Username:</label>

@@ -16,6 +16,7 @@ export default function Home(props){
     const [confirmPassword, setConfirmPassword] = useState("");
     const [email, setEmail] = useState("");
 
+    // TODO: Use error instead of alert prompts
     const [error, setError] = useState("");
     const [passwordCompliant, setPasswordCompliant] = useState(null);
     const [passwordStrengthLevel, setPasswordStrengthLevel] = useState(0);
@@ -28,22 +29,28 @@ export default function Home(props){
         setPasswordCompliant(textByPasswordStrength[passwordStrengthResults.id]);
     }
     
+    // TODO: Follow DRY principles and have less repeating code
+
     async function validateAndSend(ev){
         const passwordStrengthResults = passwordStrength(password);
         if(passwordStrengthResults.id >= 2){
             // OK now let's verify everything else
             if(!username || !password){
-                alert("Please fill out a username and password")
+                alert("Please fill out a username and password");
+                ev.preventDefault();
                 return;
             }else if(password === confirmPassword){
                 alert("Passwords do not match");
+                ev.preventDefault();
                 return;
             }else if(!realname){
                 alert("Please fill in a real name");
+                ev.preventDefault();
                 return;
             }else if(!email){
                 alert("Please fill in an email");
-                return;
+                ev.preventDefault();
+                return false;
             }
             // Send
             try{
@@ -74,7 +81,7 @@ export default function Home(props){
 
     return <div className="homepage container">
         <h2 className="content-title">Signup</h2>
-        <form className="w-400 mw-full">
+        <form className="w-400 mw-full" onSubmit={validateAndSend}>
             <div className="form-group">
                 <label for="fullname" className="required">Real name:</label>
                 <input type="text" className="form-control" id="realname" placeholder="John Doe" required="required" onChange={(ev) => setRealname(ev.target.value)}></input>

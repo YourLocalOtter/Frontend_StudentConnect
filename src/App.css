@@ -1,0 +1,29 @@
+form > .form-group{
+  margin-bottom: 1.2rem;
+}
+
+.pwd-strong{
+  color: limegreen;
+}
+
+.pwd-tooweak{
+  color: red;
+  font-weight: bold;
+}
+
+.pwd-weak{
+  color: red;
+}
+
+.pwd-medium{
+  color: goldenrod;
+}
+
+.password-matched-input{
+  border-color: limegreen;
+  
+}
+
+.password-mismatched-input{
+  border-color: red;
+}

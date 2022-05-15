@@ -1,9 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 
+// Import pages
 import Home from "./pages/home"
+import NotFound from "./pages/notfound";
+import Signup from "./pages/signup";
 
 import Navbar from "./Navbar"
+
 
 import {
   BrowserRouter,
@@ -26,8 +30,9 @@ function App() {
                   </Route>
                   <Route path="/signin">
                   </Route>
-                  <Route path="/signup">
+                  <Route path="/signup" element={<Signup />}>
                   </Route>
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </BrowserRouter>
             </div>

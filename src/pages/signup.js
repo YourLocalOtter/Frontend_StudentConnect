@@ -38,15 +38,15 @@ export default function Home(props){
             if(!username || !password){
                 alert("Please fill out a username and password");
                 ev.preventDefault();
-                return;
-            }else if(password === confirmPassword){
+                return false;
+            }else if(password !== confirmPassword){
                 alert("Passwords do not match");
                 ev.preventDefault();
-                return;
+                return false;
             }else if(!realname){
                 alert("Please fill in a real name");
                 ev.preventDefault();
-                return;
+                return false;
             }else if(!email){
                 alert("Please fill in an email");
                 ev.preventDefault();
@@ -54,7 +54,7 @@ export default function Home(props){
             }
             // Send
             try{
-                const response = await dfetch("/api/signup", {
+                const response = await dfetch("/users", {
                     method: "POST",
                     bodyJson: {
                         username,
@@ -67,7 +67,9 @@ export default function Home(props){
                 if(response.status === 200){
                     window.location.href = "/"; // Force reload!
                 }else{
-                    alert("ERROR: " + await response.text());
+                    let respText = await response.text();
+                    alert("ERROR: " + respText);
+                    setError(respText);
                 }
             }catch(ex){
                 alert("Error: " + ex + " please contact maintainers with the details in this box.");

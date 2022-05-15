@@ -1,6 +1,8 @@
 import { passwordStrength } from 'check-password-strength'
 import {useState} from "react";
 
+import dfetch from "../utils/fetch";
+
 const classesByPasswordStrength = ["pwd-tooweak","pwd-weak","pwd-medium","pwd-strong"];
 const textByPasswordStrength = ["Too Weak","Weak","Medium","Strong"];
 
@@ -26,12 +28,47 @@ export default function Home(props){
         setPasswordCompliant(textByPasswordStrength[passwordStrengthResults.id]);
     }
     
-    function validateAndSend(ev){
+    async function validateAndSend(ev){
         const passwordStrengthResults = passwordStrength(password);
         if(passwordStrengthResults.id >= 2){
-            
+            // OK now let's verify everything else
+            if(!username || !password){
+                alert("Please fill out a username and password")
+                return;
+            }else if(password === confirmPassword){
+                alert("Passwords do not match");
+                return;
+            }else if(!realname){
+                alert("Please fill in a real name");
+                return;
+            }else if(!email){
+                alert("Please fill in an email");
+                return;
+            }
+            // Send
+            try{
+                const response = await dfetch("/api/signup", {
+                    method: "POST",
+                    bodyJson: {
+                        username,
+                        password,
+                        realname,
+                        email
+                    },
+                    raw: true
+                });
+                if(response.status === 200){
+                    window.location.href = "/"; // Force reload!
+                }else{
+                    alert("ERROR: " + await response.text());
+                }
+            }catch(ex){
+                alert("Error: " + ex + " please contact maintainers with the details in this box.");
+                setError(ex);
+            }
         }else{
-            setError("Password is too weak");
+            alert("Password is too weak");
+            return;
         }
     }
 

@@ -96,7 +96,7 @@ export default function Home(props){
             </small>
             <div className="form-group">
                 <label for="username" className="required">Username:</label>
-                <input type="text" className="form-control" id="username" placeholder="johndoe" required="required" nChange={(ev) => setUsername(ev.target.value)}></input>
+                <input type="text" className="form-control" id="username" placeholder="johndoe" required="required" onChange={(ev) => setUsername(ev.target.value)}></input>
             </div>
             <small>
                 This is the name everyone will refer to you by when your real name is not displayed. 
